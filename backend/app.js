@@ -3,19 +3,20 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
 // middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(origin = process.env.CORS_ORIGIN));
 
 
 // database connection
-const dbURI = 'mongodb+srv://yasseralbalola:SXXkgrlgYXUAEv5D@cluster0.r4hhfsi.mongodb.net';
+const dbURI = process.env.MONGODB_URI;
 mongoose.connect(dbURI)
-  .then((result) => app.listen(3001))
+  .then((result) => app.listen(process.env.PORT))
   .catch((err) => console.log(err));
 
 // routes

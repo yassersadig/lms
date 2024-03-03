@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('http://localhost:3001/login', values);
+            const response = await axios.post(process.env.REACT_APP_SERVER_URL+'/login', values);
             if (signIn({
                 auth: {
                     token: response.data.token,

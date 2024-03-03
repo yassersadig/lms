@@ -6,13 +6,12 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn';
 
 const Signup = () => {
     const [apiErrors, setApiErrors] = useState([]);
-    // console.log(apiErrors)
     const navigate = useNavigate();
     const signIn = useSignIn();
 
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('http://localhost:3001/signup', values);
+            const response = await axios.post(process.env.REACT_APP_SERVER_URL + '/signup', values);
             if (signIn({
                 auth: {
                     token: response.data.token,

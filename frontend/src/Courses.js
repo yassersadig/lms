@@ -6,7 +6,7 @@ const Courses = () => {
     return (
         <div className="flex flex-col h-screen items-center justify-center">
             <div>Welcome {user.name},</div>
-            <div>Somthing cool is coming soon...</div>
+            <div>Something cool is coming soon...</div>
         </div>
     );
 }

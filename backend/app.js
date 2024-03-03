@@ -2,18 +2,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
+const cors = require('cors');
 
 const app = express();
 
 // middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 
 // database connection
 const dbURI = 'mongodb+srv://yasseralbalola:SXXkgrlgYXUAEv5D@cluster0.r4hhfsi.mongodb.net';
 mongoose.connect(dbURI)
-  .then((result) => app.listen(3000))
+  .then((result) => app.listen(3001))
   .catch((err) => console.log(err));
 
 // routes

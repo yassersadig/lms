@@ -3,28 +3,28 @@ const jwt = require('jsonwebtoken');
 
 // handle errors 
 const handleErrors = (err) => {
-    let errors = { name: '', email: '', password: '' };
+    let errors = [];
 
     // duplicate email error
     if (err.code === 11000) {
-        errors.email = 'that email is already registered';
+        errors.push('that email is already registered');
         return errors;
     }
 
     // incorrect email
     if (err.message === 'incorrect email') {
-        errors.email = 'that email is not registered';
+        errors.push('that email is not registered');
     }
 
     // incorrect password
     if (err.message === 'incorrect password') {
-        errors.password = 'that password is incorrect';
+        errors.push('that password is incorrect');
     }
 
     // validation errors
     if (err.message.includes('user validation failed')) {
         Object.values(err.errors).forEach(({ properties }) => {
-            errors[properties.path] = properties.message;
+            errors.push(properties.message);
         });
     }
 
@@ -42,7 +42,11 @@ const signup_post = async (req, res) => {
         const user = await User.create({ name, email, password });
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(201).json({ user: user._id });
+        res.status(200).json({
+            token: token,
+            name: user.name,
+            email: user.email
+        });
     }
     catch (err) {
         const errors = handleErrors(err);
@@ -56,13 +60,16 @@ const login_post = async (req, res) => {
         const user = await User.login(email, password);
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({ user: user._id });
-    } 
+        res.status(200).json({
+            token: token,
+            name: user.name,
+            email: user.email
+        });
+    }
     catch (err) {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
-    res.send('user login');
 }
 
 const logout_get = (req, res) => {

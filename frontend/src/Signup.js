@@ -3,14 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import { useFormik } from 'formik';
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import BounceLoader from "react-spinners/BounceLoader";
+import { Link } from "react-router-dom";
+
 
 const Signup = () => {
     const [apiErrors, setApiErrors] = useState([]);
     const navigate = useNavigate();
     const signIn = useSignIn();
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (values) => {
         try {
+            setLoading(true);
             const response = await axios.post(process.env.REACT_APP_SERVER_URL + '/signup', values);
             if (signIn({
                 auth: {
@@ -23,6 +28,7 @@ const Signup = () => {
                 }
             })) {
                 navigate('/courses');
+                setLoading(false);
             }
 
         } catch (err) {
@@ -31,8 +37,7 @@ const Signup = () => {
             } else if (err instanceof Error) {
                 setApiErrors([err.message]);
             }
-            console.log(apiErrors);
-            console.log(err);
+            setLoading(false);
         }
     };
 
@@ -69,11 +74,14 @@ const Signup = () => {
         validate,
     });
 
-    console.log(apiErrors)
     return (
-        <div className="flex flex-col h-screen items-center justify-center">
-            <div className="w-full max-w-xs">
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={formik.handleSubmit}>
+        <div className="flex flex-col h-full items-center justify-center">
+            {loading ? <div className="absolute z-10 before:block before:fixed before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:bg-opacity-35">
+                <BounceLoader color={"#3b82f6"} loading={loading} size={100} />
+            </div> : null}
+            <div className="w-full max-w-xs shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4">
+                <div className="text-center text-2xl mb-4">Sign Up</div>
+                <form onSubmit={formik.handleSubmit}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                             Full Name
@@ -106,7 +114,7 @@ const Signup = () => {
                         />
                         {formik.touched.email && formik.errors.email ? <div className="text-center text-red-300">{formik.errors.email}</div> : null}
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                             Password
                         </label>
@@ -129,6 +137,7 @@ const Signup = () => {
                     </div>
                     {apiErrors.map((error, index) => <div key={index} className="text-center text-red-300">{error}</div>)}
                 </form>
+                <div className="text-center mt-4">Already have an account? <Link to="/login" className="text-blue-500">Login</Link></div>
             </div>
         </div>
     );

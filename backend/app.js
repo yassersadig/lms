@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
+const videoRoutes = require('./routes/videoRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -21,6 +22,7 @@ mongoose.connect(dbURI)
 
 // routes
 app.use(authRoutes);
+app.use(videoRoutes);
 
 // error handler
 app.use(function(err, req, res, next) {

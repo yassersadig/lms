@@ -19,7 +19,7 @@ function App() {
   return (
     <AuthProvider store={store}>
       <Router>
-        <div className="container mx-auto flex flex-col h-full">
+        <div className="mx-auto flex flex-col h-full">
           <Navbar />
           <div className="content grow">
             <Routes>

@@ -31,13 +31,13 @@ const Navbar = () => {
           <h1>Learning Management System</h1>
         </Link>
       </div>
-      <ul className="ml-auto hidden md:flex">
+      <ul className="ml-auto hidden md:flex m-4">
         {!isAuthenticated() && (
           <li>
             <Link
               onClick={() => handleNaviation("/signup")}
               to="/signup"
-              className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="ml-2 bg-[#a0bccc] hover:bg-blue-700 text-[#001a23] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Sign Up
             </Link>
@@ -48,7 +48,7 @@ const Navbar = () => {
             <Link
               onClick={() => handleNaviation("/login")}
               to="/login"
-              className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="ml-2 bg-[#a0bccc] hover:bg-blue-700 text-[#001a23] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Login
             </Link>
@@ -58,7 +58,7 @@ const Navbar = () => {
           <li>
             <button
               onClick={() => handleSignOut()}
-              className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="ml-2 bg-[#a0bccc] hover:bg-blue-700 text-[#001a23] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Logout
             </button>

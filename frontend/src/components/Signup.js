@@ -131,13 +131,13 @@ const Signup = () => {
                         {formik.touched.password && formik.errors.password ? <div className="text-center text-red-300">{formik.errors.password}</div> : null}
                     </div>
                     <div className="flex items-center justify-center">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button className="bg-[#001a23] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Sign Up
                         </button>
                     </div>
                     {apiErrors.map((error, index) => <div key={index} className="text-center text-red-300">{error}</div>)}
                 </form>
-                <div className="text-center mt-4">Already have an account? <Link to="/login" className="text-blue-500">Login</Link></div>
+                <div className="text-center mt-4">Already have an account? <Link to="/login" className="text-[#407899]">Login</Link></div>
             </div>
         </div>
     );

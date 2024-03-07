@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
-import { useNavigate } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useState } from "react";
 
 const Navbar = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -57,13 +56,12 @@ const Navbar = () => {
         )}
         {isAuthenticated() && (
           <li>
-            <a
-              href="#"
+            <button
               onClick={() => handleSignOut()}
               className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Logout
-            </a>
+            </button>
           </li>
         )}
       </ul>
@@ -103,9 +101,7 @@ const Navbar = () => {
           )}
           {isAuthenticated() && (
             <li className="p-4 border-b">
-              <a href="#" onClick={() => handleSignOut()}>
-                Logout
-              </a>
+              <button onClick={() => handleSignOut()}>Logout</button>
             </li>
           )}
         </ul>

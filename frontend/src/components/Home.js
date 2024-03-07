@@ -5,7 +5,7 @@ import {
   CardBody,
   Typography,
 } from "@material-tailwind/react";
-import Star from "./components/Start";
+import Star from "./Star";
 import { useEffect, useState } from "react";
 import axios from "axios";
 

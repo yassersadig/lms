@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -23,7 +23,20 @@ const Home = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {loading && <Loading loading={!loading} />}
+      {loading && <Loading loading={loading} />}
+      {error && (
+        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">
+          <div>{error}</div>
+          <div className="text-center mt-4">
+            <Link
+              to="/"
+              className="ml-2 bg-[#001a23] hover:bg-[#a0bccc] hover:text-[#001a23] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              try again
+            </Link>
+          </div>
+        </div>
+      )}
       {videos &&
         videos.map((video, index) => (
           <div

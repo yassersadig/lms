@@ -40,6 +40,7 @@ const Login = () => {
       } else if (err instanceof Error) {
         setError(err.message);
       }
+    } finally {
       setLoading(false);
     }
   };
@@ -72,7 +73,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col h-full items-center justify-center">
-      {loading && <Loading loading={!loading} />}
+      {loading && <Loading loading={loading} />}
       <div className="w-full max-w-xs shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="text-center text-2xl mb-4">Login</div>
         <form onSubmit={formik.handleSubmit}>

@@ -3,16 +3,17 @@ import axios from "axios";
 
 const useGet = (url) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetch = async (url) => {
       try {
+        setLoading(true);
         const response = await axios.get(url);
         setData(response.data);
       } catch (error) {
-        setError(error);
+        setError("Something went wrong...");
       } finally {
         setLoading(false);
       }

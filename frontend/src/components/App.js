@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import createStore from "react-auth-kit/createStore";
 import AuthProvider from "react-auth-kit";
 import RequireAuth from "@auth-kit/react-router/RequireAuth";
+import VideoDetails from "./VideoDetails";
 
 const store = createStore({
   authName: "jwt",
@@ -34,6 +35,7 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route path="/video/:id" element={<VideoDetails />} />
               <Route path="*" element={<div>Not Found</div>} />
             </Routes>
           </div>

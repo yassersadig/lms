@@ -10,7 +10,7 @@ const Home = () => {
   const videos = data?.videos;
 
   return (
-    <div className="flex flex-col h-full mx-4">
+    <div className="flex flex-col h-full mx-4 overflow-scroll">
       {loading && <Loading loading={loading} />}
       {error && (
         <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">
@@ -25,7 +25,8 @@ const Home = () => {
           </div>
         </div>
       )}
-      {videos && videos.map((video) => <VideoCard key={video._id} video={video} />)}
+      {videos &&
+        videos.map((video) => <VideoCard key={video._id} video={video} />)}
     </div>
   );
 };

@@ -18,7 +18,7 @@ const VideoDetails = () => {
   const videos = allVideos?.videos;
 
   return (
-    <div className="flex flex-col h-full p-4">
+    <div className="flex flex-col h-full p-4 overflow-scroll">
       {loading && <Loading loading={loading} />}
       {error && (
         <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">
@@ -36,7 +36,13 @@ const VideoDetails = () => {
       {!loading && !error && (
         <div className="mb-2">
           <video class="w-full h-64 rounded-2xl mb-2 object-cover" controls>
-            <source src="https://docs.material-tailwind.com/demo.mp4" />
+            <source
+              src={
+                data &&
+                (data.video.videoUrl ||
+                  "https://docs.material-tailwind.com/demo.mp4")
+              }
+            />
             Your browser does not support the video tag.
           </video>
           <div className=" bg-gray-100 rounded-2xl p-3 mb-2">

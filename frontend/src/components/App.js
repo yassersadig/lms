@@ -22,7 +22,7 @@ function App() {
       <Router>
         <div className="mx-auto flex flex-col h-full">
           <Navbar />
-          <div className="content grow">
+          <div className="content grow h-full overflow-hidden">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<Signup />} />

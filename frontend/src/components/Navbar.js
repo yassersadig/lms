@@ -25,7 +25,7 @@ const Navbar = () => {
     setShowMenu(false);
   };
   return (
-    <nav className="flex justify-between items-center w-full my-0 mx-auto border-b bg-[#001a23] text-white sticky top-0 z-10">
+    <nav className="flex justify-between items-center w-full my-0 mx-auto border-b bg-[#001a23] text-white">
       <div className="text-lg font-bold m-4">
         <Link to="/">
           <h1>Learning Management System</h1>

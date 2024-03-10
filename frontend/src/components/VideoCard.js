@@ -34,8 +34,8 @@ const VideoCard = ({ video }) => {
             height={150}
           />
         </CardHeader>
-        <CardBody className="w-full px-2 py-0 flex flex-col h-full justify-between">
-          <Typography className="w-full h-1/4 overflow-hidden whitespace-nowrap overflow-ellipsis text-lg font-bold text-black">
+        <CardBody className="w-full px-2 py-0 flex flex-col h-full justify-between overflow-hidden whitespace-nowrap overflow-ellipsis">
+          <Typography className="w-full h-1/4 text-lg font-bold text-black">
             {video.name}
           </Typography>
           <Typography

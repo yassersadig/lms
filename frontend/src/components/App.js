@@ -35,7 +35,14 @@ function App() {
                   </RequireAuth>
                 }
               />
-              <Route path="/video/:id" element={<VideoDetails />} />
+              <Route
+                path="/video/:id"
+                element={
+                  <RequireAuth fallbackPath="/login">
+                    <VideoDetails />
+                  </RequireAuth>
+                }
+              />
               <Route path="*" element={<div>Not Found</div>} />
             </Routes>
           </div>

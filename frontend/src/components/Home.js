@@ -10,7 +10,7 @@ const Home = () => {
   const videos = data?.videos;
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full mx-4">
       {loading && <Loading loading={loading} />}
       {error && (
         <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10">

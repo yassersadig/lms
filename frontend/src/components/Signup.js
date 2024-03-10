@@ -27,7 +27,7 @@ const Signup = () => {
                     email: response.data.email
                 }
             })) {
-                navigate('/courses');
+                navigate('/');
                 setLoading(false);
             }
 

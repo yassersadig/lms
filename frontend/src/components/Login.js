@@ -32,7 +32,7 @@ const Login = () => {
         })
       ) {
         setLoading(false);
-        navigate("/courses");
+        navigate("/");
       }
     } catch (err) {
       if (err && err instanceof AxiosError) {

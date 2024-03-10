@@ -17,10 +17,10 @@ const VideoCard = ({ video }) => {
   return (
     <div
       key={video._id}
-      className="flex mx-4 border-b"
+      className="flex border-b"
       onClick={() => handleNavigation(video._id)}
     >
-      <Card className="w-full h-32 flex-row mt-3 mb-3 rounded-none shadow-none">
+      <Card className="w-full h-32 flex-row mt-3 mb-3 rounded-none shadow-none bg-transparent">
         <CardHeader
           shadow={false}
           floated={false}

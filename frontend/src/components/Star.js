@@ -7,7 +7,7 @@ const Star = ({ fill }) => {
         fill={fill ? "currentColor" : "none"}
         stroke={fill ? "none" : "currentColor"}
         strokeWidth={fill ? "0" : "1.5"}
-        className="w-6 h-6 text-yellow-700 cursor-pointer"
+        className="w-5 text-yellow-700 cursor-pointer"
       >
         <path
           fillRule="evenodd"

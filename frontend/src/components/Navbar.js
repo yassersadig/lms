@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
@@ -9,6 +9,30 @@ const Navbar = () => {
   const signOut = useSignOut();
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const sidebarRef = useRef(null);
+
+  const handleOutsideClick = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      setShowMenu(false);
+      setTimeout(() => {
+        setShowMenu(null);
+      }, 300);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      handleOutsideClick(event);
+    };
+
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenu]);
 
   const handleNaviation = (path) => {
     navigate(path);
@@ -16,7 +40,14 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => {
-    setShowMenu(!showMenu);
+    if (showMenu) {
+      setShowMenu(false);
+      setTimeout(() => {
+        setShowMenu(null);
+      }, 300);
+    } else {
+      setShowMenu(true);
+    }
   };
 
   const handleSignOut = () => {
@@ -73,11 +104,10 @@ const Navbar = () => {
         )}
       </div>
       <div
-        className={
-          showMenu
-            ? "fixed left-0 top-0 w-[60%] h-full border-r bg-[#001a23] z-10 ease-in duration-300"
-            : "fixed left-[-100%] ease-out duration-75"
-        }
+        ref={sidebarRef}
+        className={`fixed top-0 h-full border-r bg-[#001a23] z-10 ease-in-out duration-300 ${
+          showMenu ? "left-0 w-[60%]" : "left-[-100%] w-0"
+        }`}
       >
         <div className="w-full text-lg font-bold m-4">
           <Link to="/" onClick={() => handleNaviation("/")}>
